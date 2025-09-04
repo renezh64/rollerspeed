@@ -6,7 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RollerspeedApplication {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		SpringApplication.run(RollerspeedApplication.class, args);
 	}
 

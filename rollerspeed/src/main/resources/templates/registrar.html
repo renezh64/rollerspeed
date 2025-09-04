@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html th:replace="~{fragments :: navbar}">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="container">
+         <h1>Registrar Persona</h1>
+        <form th:action="@{/registrar}" th:object="${aspirante}" method="post">
+            <label>Tipo ID:</label>
+            <input type="text" th:field="*{strTipoID}" required>
+            <label>Numero Identificaci&oacute;n:</label>
+            <input type="text" th:field="*{strNumID}" required>
+            <label>Nombres</label>
+            <input type="text" th:field="*{strNombres}" required>
+            <label>Apellidos</label>
+            <input type="text" th:field="*{strApellidos}" required>
+            <label>Medio de pago</label>
+            <input type="text" th:field="*{strMedioPag}" required>
+            
+            <button type="submit">Guardar</button>
+    </form>
+</div>
+    </body>
+</html>

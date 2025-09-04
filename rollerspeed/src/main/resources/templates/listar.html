@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html th:replace="~{fragments :: navbar}">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col12 ">
+                    <h1>Lista de Personas</h1>
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col s12 ">
+                    <table class="responsive-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo Ident</th>
+                                <th>Num. Identificaci&oacute;n</th>
+                                <th>Nombres y Apellidos</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="Aspirantes : ${aspirante}">
+                                <td th:text="${aspirante.Id}"></td>
+                                <td th:text="${aspirante.strTipoID}"></td>
+                                <td th:text="${aspirante.strNumID}"></td>
+                                <td th:text="${aspirante.strNombres} ${aspirante.strApellidos}"></td>            
+                                <td>
+                                    <a th:href="@{/editar/{id}(id=${aspirante.id})}">Editar</a>
+                                    <a th:href="@{/eliminar/{id}(id=${aspirante.id})}">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+    
+        
+        </div>
+    </body>
+</html>
