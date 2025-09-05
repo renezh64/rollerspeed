@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cursos del Alumno</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div th:insert="fragments :: navbar"></div>
+    <div class="container">
+        <h1>Cursos de <span th:text="${alumno.nombre}"></span></h1>
+        <ul class="collection">
+            <li class="collection-item" th:each="curso : ${cursos}">
+                <strong th:text="${curso.nombre}"></strong> - 
+                <span th:text="${curso.horario}"></span>
+            </li>
+        </ul>
+        <a class="btn grey lighten-1" th:href="@{/listarAlumnos}">Volver a la lista</a>
+    </div>
+</body>
+</html>

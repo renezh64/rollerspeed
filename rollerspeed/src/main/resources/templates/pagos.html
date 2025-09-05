@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pagos del Alumno</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div th:insert="fragments :: navbar"></div>
+    <div class="container">
+        <h1>Pagos de <span th:text="${alumno.nombre}"></span></h1>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pago : ${pagos}">
+                    <td th:text="${pago.id}"></td>
+                    <td th:text="${pago.descripcion}"></td>
+                    <td th:text="${pago.monto}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <a class="btn grey lighten-1" th:href="@{/listarAlumnos}">Volver a la lista</a>
+    </div>
+</body>
+</html>

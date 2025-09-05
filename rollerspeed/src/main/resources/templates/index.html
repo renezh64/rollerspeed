@@ -1,20 +1,15 @@
+index.html
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html th:replace="~{fragments :: navbar}">
+<html>
     <head>
-        <title>Escuela roller speed</title>
+        <title>Escuela Roller Speed</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        
     </head>
     <body>
+        <div th:insert="fragments :: navbar"></div>
         <div class="container">
             <h1>Bienvenidos al Sistema</h1>
             <p>Seleccione una opción del menú.</p>
