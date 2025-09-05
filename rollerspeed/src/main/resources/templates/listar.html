@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html th:replace="~{fragments :: navbar}">
+
+<html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Listar</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <!-- Compiled and minified JavaScript -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col12 ">
+         <div class="row">
+          <div class="col s12">
+            <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+        </div>
+        <div class="row">
+                <div class="col s12">
                     <h1>Lista de Personas</h1>
                 </div>
-            </div>  
-            <div class="row">
+        </div>  
+        <div class="row">
                 <div class="col s12 ">
                     <table class="responsive-table">
                         <thead>
@@ -46,7 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </tbody>
                     </table>
                 </div>
-            </div>
+        </div>
         
     
         

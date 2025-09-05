@@ -34,7 +34,7 @@ public class clsAspirantes
         { this.Id=Id; }        
     }
     
-    public String getstrTipoId()
+    public String getstrTipoID()
     {return this.strTipoID;}
     
     public void setstrTipoID(String TipoId)
