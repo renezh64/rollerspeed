@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>   
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div th:replace="~{fragments :: navbar}"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h1>Lista de Insructores</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <a th:href="@{/instructor/registrar}" class="btn">Nuevo Instructor</a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Correo</th>
+                                <th>Fecha Entrada</th>
+                                <th>Fecha Salida</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="instructor : ${instructores}">
+                            <td th:text="${instructor.id}"></td>
+                            <td th:text="${instructor.nombres}"></td>
+                            <td th:text="${instructor.apellidos}"></td>
+                            <td th:text="${instructor.correo}"></td>
+                            <td th:text="${instructor.fechaEntra}"></td>
+                            <td th:text="${instructor.fechaSal}"></td>
+                            <td>
+                                <a th:href="@{/instructor/editar/{id}(id=${instructor.id})}">Editar</a>
+                                <a th:href="@{/instructor/eliminar/{id}(id=${instructor.id})}">Eliminar</a>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

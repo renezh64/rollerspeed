@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registrar estudiante</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+         <div class="row">
+          <div class="col s12">
+           <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <h1>Registrar estudiante</h1>
+          </div>
+         </div>   
+         <div class="row">
+          <div class="col s12">
+           <form th:action="@{/estudiante/registrar}" th:object="${estudiante}" method="post">
+        <label>Tipo ID:</label>
+        <input type="text" th:field="*{tipoID}" required>
+        <label>Número ID:</label>
+        <input type="text" th:field="*{numID}" required>
+        <label>Nombres:</label>
+        <input type="text" th:field="*{nombres}" required>
+        <label>Apellidos:</label>
+        <input type="text" th:field="*{apellidos}" required>
+        <label>Fecha Nacimiento:</label>
+        <input type="date" th:field="*{fechaNac}" required>
+        <button type="submit">Guardar</button>
+    </form>
+          </div>
+         </div>
+        </div>
+    </body>
+</html>

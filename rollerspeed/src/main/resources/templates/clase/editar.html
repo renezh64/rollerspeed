@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editar clase</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+         <div class="row">
+          <div class="col s12">
+           <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <h1>Editar Clase</h1>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <form th:action="@{/clase/editar/{id}(id=${clase.id})}" th:object="${clase}" method="post">
+            <label>Instructor:</label>
+            <select th:field="*{instructor}" required>
+                <option th:each="instructor : ${instructores}" th:value="${instructor.id}"
+                    th:text="${instructor.nombres + ' ' + instructor.apellidos}"></option>
+            </select>
+            <label>Nombre:</label>
+            <input type="text" th:field="*{nombre}" required>
+            <label>Descripción:</label>
+            <textarea th:field="*{descripcion}"></textarea>
+            <label>Día:</label>
+            <input type="text" th:field="*{dia}" required>
+            <label>Hora Inicio:</label>
+            <input type="time" th:field="*{horaIni}" required>
+            <label>Hora Fin:</label>
+            <input type="time" th:field="*{horaFin}" required>
+            <label>Fecha Inicio:</label>
+            <input type="date" th:field="*{fechaIni}" required>
+            <label>Fecha Fin:</label>
+            <input type="date" th:field="*{fechaFin}">
+            <button type="submit">Actualizar</button>
+           </form>
+          </div>
+         </div>
+        </div>
+    </body>
+</html>

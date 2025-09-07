@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Asistencia a clase</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+         <div class="row">
+          <div class="col s12">
+           <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <h1>Asistencia a Clases por estudiante</h1>
+          </div>
+         </div>            
+         <div class="row">
+          <div class="col s12">
+           <a th:href="@{/asistencia/registrar}" class="btn">Nueva Asistencia</a>
+           <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Estudiante</th>
+                <th>Clase</th>
+                <th>Fecha Asistencia</th>
+                <th>Asistió</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+             <tr th:each="asistencia : ${asistencias}">
+              <td th:text="${asistencia.id}"></td>
+              <td th:text="${asistencia.estudiante.nombres + ' ' + asistencia.estudiante.apellidos}"></td>
+              <td th:text="${asistencia.clase.nombre}"></td>
+              <td th:text="${asistencia.fechaAsis}"></td>
+              <td th:text="${asistencia.asistio}"></td>
+              <td>
+                <a th:href="@{/asistencia/editar/{id}(id=${asistencia.id})}">Editar</a>
+                <a th:href="@{/asistencia/eliminar/{id}(id=${asistencia.id})}">Eliminar</a>
+              </td>
+             </tr>
+            </tbody>
+           </table>
+         </div>
+        </div>   
+ </div>
+ </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clase matriculadas por estudiante</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class=container">
+         <div class="row">
+          <div class="col s12">
+           <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <h1>Clases por estudiante</h1>
+          </div>
+         </div>  
+         <div class="row">
+          <div class="col s12">
+           <a th:href="@{/estudiante_clase/registrar}" class="btn">Nueva Inscripción</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Estudiante</th>
+            <th>Clase</th>
+            <th>Fecha Inscripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="estudianteClase : ${estudianteClases}">
+            <td th:text="${estudianteClase.id}"></td>
+            <td th:text="${estudianteClase.estudiante.nombres + ' ' + estudianteClase.estudiante.apellidos}"></td>
+            <td th:text="${estudianteClase.clase.nombre}"></td>
+            <td th:text="${estudianteClase.fechaCre}"></td>
+            <td>
+                <a th:href="@{/estudiante_clase/editar/{id}(id=${estudianteClase.id})}">Editar</a>
+                <a th:href="@{/estudiante_clase/eliminar/{id}(id=${estudianteClase.id})}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+          </div>
+         </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Estudiantes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+     <div class="container">
+         <div class="row">
+          <div class="col s12">
+           <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <h1>Lista de Clases</h1>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <a th:href="@{/estudiante/registrar}" class="btn">Nuevo Estudiante</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo ID</th>
+            <th>Número ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Fecha Nacimiento</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="estudiante : ${estudiantes}">
+            <td th:text="${estudiante.id}"></td>
+            <td th:text="${estudiante.tipoID}"></td>
+            <td th:text="${estudiante.numID}"></td>
+            <td th:text="${estudiante.nombres}"></td>
+            <td th:text="${estudiante.apellidos}"></td>
+            <td th:text="${estudiante.fechaNac}"></td>
+            <td>
+                <a th:href="@{/estudiante/editar/{id}(id=${estudiante.id})}">Editar</a>
+                <a th:href="@{/estudiante/eliminar/{id}(id=${estudiante.id})}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+          </div>
+         </div>
+         
+     </div>
+    </body>
+</html>

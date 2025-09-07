@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registrar clase para estudiante</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="container"> 
+         <div class="row">
+          <div class="col s12">
+           <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <h1>registrar clase para estudiante</h1>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <h1>registrar clase para estudiante</h1>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col s12">
+           <form th:action="@{/estudiante_clase/registrar}" th:object="${estudianteClase}" method="post">
+            <label>Estudiante:</label>
+             <select th:field="*{estudiante}" required>
+                <option th:each="estudiante : ${estudiantes}" th:value="${estudiante.id}"
+                    th:text="${estudiante.nombres + ' ' + estudiante.apellidos}"></option>
+             </select>
+             <label>Clase:</label>
+             <select th:field="*{clase}" required>
+               <option th:each="clase : ${clases}" th:value="${clase.id}" th:text="${clase.nombre}"></option>
+             </select>
+             <label>Fecha Inscripción:</label>
+             <input type="date" th:field="*{fechaCre}" required>
+             <button type="submit">Guardar</button>
+           </form>
+          </div>
+         </div>   
+        </div>
+    </body>
+</html>

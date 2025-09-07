@@ -5,6 +5,8 @@ import java.time.LocalDate;
  *
  * @author Usuario
  */
+@Entity
+@Table(name = "clsEstudiante")
 public class Estudiante {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
