@@ -8,6 +8,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </head>
     <body>
+         <div th:replace="~{fragments :: TheJs}"></div>
         <div class="container">
          <div class="row">
           <div class="col s12">
@@ -23,7 +24,7 @@
             <div class="col s12">
               <form th:action="@{/clase/registrar}" th:object="${clase}" method="post">
                 <label>Instructor:</label>
-                <select th:field="*{instructor}" required>
+                <select class="select-dropdown dropdown-trigger" th:field="*{instructor}" required>
                  <option th:each="instructor : ${instructores}" th:value="${instructor.id}"
                     th:text="${instructor.nombres + ' ' + instructor.apellidos}"></option>
                 </select>

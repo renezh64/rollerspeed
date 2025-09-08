@@ -5,21 +5,40 @@
         <title>Escuela roller speed</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">        
     </head>
     <body>
+        <div th:fragment="TheJs" id="divScript" name="divScript">           
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $('select').formSelect();
+                    $('.dropdown-trigger').dropdown();
+                });
+            </script>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <nav th:fragment="navbar">
+                    <div th:fragment="navbar">
+                       <ul id="ddMenu1" class="dropdown-content">
+                        <li><a th:href="@{/mision}">Misión</a></li>
+                                                
+                       </ul>
+                       <ul id="ddMenu2" class="dropdown-content">
+                        <li><a th:href="@{/listar}">Listar</a></li>
+                        <li><a th:href="@{/registrar}">Registrar</a></li>
+                        <li><a href="#!">two</a></li>                        
+                       </ul>
+                    <nav id="navmenu" name="navmenu">
                         <div class="nav-wrapper">
-                            <a href="#" class="brand-logo">RZyJD</a>
+                            <a href="#" class="brand-logo"><img th:src="@{logoRollerSpeed.png}" alt="logo" class="responsive-img navbar-logo"/> </a>                            
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                               <li><a th:href="@{/}">Inicio</a></li>
-                              <li><a th:href="@{/mision}">Misión</a></li>
-                              <li><a th:href="@{/registrar}">Registrar</a></li>
-                              <li><a th:href="@{/listar}">Listar</a></li>
+                              <li><a class="dropdown-trigger" href="#!" data-target="ddMenu1">Institucional</a></li>
+                              <li><a class="dropdown-trigger" href="#!" data-target="ddMenu2">Aspirantes</a></li>
                               <li><a th:href="@{/instructor/listar}">Instructores</a></li>
                               <li><a th:href="@{/clase/listar}">Clases</a></li>
                               <li><a th:href="@{/estudiante/listar}">Estudiantes</a></li>
@@ -28,6 +47,9 @@
                             </ul>
                         </div>
                     </nav>
+                        
+                       
+                    </div>
                 </div>
             </div>
         </div>
