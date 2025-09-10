@@ -4,8 +4,8 @@
         <title>Listar</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     </head>
     <body>
          <div th:replace="~{fragments :: TheJs}"></div>
@@ -17,30 +17,34 @@
         </div>
         <div class="row">
                 <div class="col s12">
-                    <h1>Lista de Personas</h1>
+                    <h1>Lista de Aspirantes</h1>
                 </div>
         </div>  
         <div class="row">
                 <div class="col s12 ">
+                    <h3 th:text="${Tam}"></h3>
                     <table class="responsive-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Tipo Ident</th>
                                 <th>Num. Identificaci&oacute;n</th>
-                                <th>Nombres y Apellidos</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="aspirantes : ${aspirante}">
+                            <!-- Los campo no es como en la clase e, es como viene de la db las columnas -->
+                            <tr th:each="aspirante: ${Aspirantes}">
                                 <td th:text="${aspirante.Id}"></td>
-                                <td th:text="${aspirante.strTipoID}"></td>
-                                <td th:text="${aspirante.strNumID}"></td>
-                                <td th:text="${aspirante.strNombres} ${aspirante.strApellidos}"></td>            
+                                <td th:text="${aspirante.getstrTipoID()}"></td>
+                                <td th:text="${aspirante.getstrNumID()}"></td>
+                                <td th:text="${aspirante.getstrNombres()} "></td>
+                                <td th:text="${aspirante.getstrApellidos()} "></td> 
                                 <td>
-                                    <a th:href="@{/editar/{id}(id=${aspirante.id})}">Editar</a>
-                                    <a th:href="@{/eliminar/{id}(id=${aspirante.id})}">Eliminar</a>
+                                    <a th:href="@{/editar/{id}(id=${aspirante.Id})}" class="btn waves-effect waves-light">Editar <i class="material-icons">edit</i></a>
+                                    <a th:href="@{/eliminar/{id}(id=${aspirante.Id})}" class="btn waves-effect waves-light">Eliminar <i class="material-icons">delete</i></a>
                                 </td>
                             </tr>
                         </tbody>

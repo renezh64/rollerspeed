@@ -8,11 +8,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 /**
  *
  * @author Usuario
  */
 @Entity
+@Table(name = "clsAspirantes")
 public class clsAspirantes 
 {   
     @Id
@@ -30,8 +32,7 @@ public class clsAspirantes
     
     public void setId(Long Id)
     {
-        if(Id>0)
-        { this.Id=Id; }        
+         this.Id=Id;          
     }
     
     public String getstrTipoID()

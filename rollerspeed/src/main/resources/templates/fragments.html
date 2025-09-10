@@ -24,8 +24,9 @@
                 <div class="col s12">
                     <div th:fragment="navbar">
                        <ul id="ddMenu1" class="dropdown-content">
-                        <li><a th:href="@{/mision}">Misión</a></li>
-                                                
+                        <li><a th:href="@{/mision#Mision}">Misi&oacute;n</a></li>
+                         <li><a th:href="@{/mision#Vision}">Visi&oacute;n</a></li> 
+                         <li><a th:href="@{/mision#ValoresCorporativos}">Valores</a></li> 
                        </ul>
                        <ul id="ddMenu2" class="dropdown-content">
                         <li><a th:href="@{/listar}">Listar</a></li>
@@ -34,7 +35,7 @@
                        </ul>
                     <nav id="navmenu" name="navmenu">
                         <div class="nav-wrapper">
-                            <a href="#" class="brand-logo"><img th:src="@{logoRollerSpeed.png}" alt="logo" class="responsive-img navbar-logo"/> </a>                            
+                            <a href="index.html" class="brand-logo"><img th:src="@{logoRollerSpeed.png}" alt="logo" class="responsive-img navbar-logo"/> </a>                            
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                               <li><a th:href="@{/}">Inicio</a></li>
                               <li><a class="dropdown-trigger" href="#!" data-target="ddMenu1">Institucional</a></li>
