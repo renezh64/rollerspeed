@@ -52,7 +52,7 @@ public class clsAspirantesController
 
     // Listar personas
     @GetMapping("/listar")
-    public String listarAspirante(Model model) {       
+    public String listarAspirante(Model model) {
         model.addAttribute("Aspirantes", AspiranteRepository.findAll());
         return "listar";
     }

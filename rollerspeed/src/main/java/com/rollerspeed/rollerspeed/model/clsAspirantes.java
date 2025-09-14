@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.lang.String;
 /**
  *
  * @author Usuario
@@ -32,7 +33,7 @@ public class clsAspirantes
     
     public void setId(Long Id)
     {
-         this.Id=Id;          
+        this.Id=Id;          
     }
     
     public String getstrTipoID()
@@ -47,7 +48,12 @@ public class clsAspirantes
     {  return this.strNumID;  }
     
     public void setstrNumID(String strNumID)
-    { this.strNumID=strNumID;  }
+    { 
+        if(!strNumID.isEmpty())
+        {  this.strNumID=strNumID; }
+        else
+        { this.strNumID= new String("");}
+    }
     
     public String getstrNombres()
     { return this.strNombres; }
@@ -71,8 +77,23 @@ public class clsAspirantes
     /**
      * @param strMedioPag the strMedioPag to set
      */
-    public void setStrMedioPag(String strMedioPag) {
-        this.strMedioPag = strMedioPag;
+    public void setStrMedioPag(String strMedioPag) 
+    {
+        if(!strMedioPag.isEmpty())
+        { this.strMedioPag = strMedioPag;}
+        else
+        { this.strMedioPag =new String ("Efectivo"); }
     }
     
+    /**
+    * Name: toString
+    * Comments: Regresa el contenido del objeto en una cadena de texto
+    * @return: String strReg;
+    */
+    public String toString()
+    {
+        String strReg= new String();
+        strReg= "ID:"+Long.toString(this.Id)+", TipoID:"+this.strTipoID+", NumID:"+this.strNumID+", Nombres:"+this.strNombres+", Apellidos:"+this.strApellidos+", Medio de pago:"+this.strMedioPag;
+        return strReg;
+    }
 }
