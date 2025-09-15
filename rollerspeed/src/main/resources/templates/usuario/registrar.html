@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registrar Usarios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    </head>
+    <body>
+        <div th:replace="~{fragments :: TheJs}"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+                <div th:replace="~{fragments :: navbar}"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <h1>Registrar Usuario</h1>
+              <form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
+                <label>Nombres:</label>
+                <input type="text" th:field="*{nombres}" required>
+                <div th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}" style="color: red;"></div>
+                <label>Apellidos:</label>
+                <input type="text" th:field="*{apellidos}" required>
+                <div th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" style="color: red;"></div>
+                <label>Nombre de Usuario:</label>
+                <input type="text" th:field="*{nomUsario}" required>
+                <div th:if="${#fields.hasErrors('nomUsario')}" th:errors="*{nomUsario}" style="color: red;"></div>
+                <label>Contraseña:</label>
+                <input type="password" th:field="*{claveAcc}" required>
+                <div th:if="${#fields.hasErrors('claveAcc')}" th:errors="*{claveAcc}" style="color: red;"></div>
+                <label>Nivel de Acceso:</label>
+                <select th:field="*{nivelDeAcc}" required>
+                    <option value="ADMIN">Administrador</option>
+                    <option value="USER">Usuario</option>
+                </select>
+                <label>Activo:</label>
+                <select th:field="*{activo}" required>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                </select>
+                <label>Notas:</label>
+                <textarea th:field="*{notas}"></textarea>
+                <button type="submit" class="waves-effect waves-light btn">Guardar</button>
+               </form>
+            </div>
+          </div>  
+        </div>
+    </body>
+</html>

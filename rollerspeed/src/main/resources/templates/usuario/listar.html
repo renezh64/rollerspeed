@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listar usarios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    </head>
+    <body>
+        <div th:replace="~{fragments :: TheJs}"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+                <div th:replace="~{fragments :: navbar}"></div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+                <h1>Lista de usuario</h1>
+                <a th:href="@{/usuario/register}" class="waves-effect waves-light btn">Nuevo usuario</a>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Nombre de Usuario</th>
+                            <th>Nivel de Acceso</th>
+                            <th>Activo</th>
+                            <th>Notas</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.strNombres}"></td>
+                        <td th:text="${usuario.strApellidos}"></td>
+                        <td th:text="${usuario.strNomUsuario}"></td>
+                        <td th:text="${usuario.strClaveAcc}"></td>
+                        <td th:text="${usuario.strNivelAcc}"></td>
+                        <td th:text="${usuario.strNotas}"></td>
+                        <td>
+                            <a th:href="@{/usuario/editar/{id}(id=${usuario.id})}">Editar</a>
+                            <a th:href="@{/usuario/eliminar/{id}(id=${usuario.id})}">Eliminar</a>
+                        </td>
+                       </tr> 
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+         <div class="row">
+            <div class="col s12">
+                <div th:replace="~{fragments :: navbar}"></div>
+            </div>
+         </div> 
+         <div class="row">
+            <div class="col s12">
+                <h1>Editar Usuario</h1> 
+                <form th:action="@{/usuario/editar/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
+                    <label>Nombres:</label>
+                    <input type="text" th:field="*{nombres}" required>
+                    <div th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}" style="color: red;"></div>
+                    <label>Apellidos:</label>
+                    <input type="text" th:field="*{apellidos}" required>
+                    <div th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" style="color: red;"></div>
+                    <label>Nombre de Usuario:</label>
+                    <input type="text" th:field="*{nomUsario}" required>
+                    <div th:if="${#fields.hasErrors('nomUsario')}" th:errors="*{nomUsario}" style="color: red;"></div>
+                    <label>Contraseña (dejar en blanco para no cambiar):</label>
+                    <input type="password" th:field="*{claveAcc}">
+                    <label>Nivel de Acceso:</label>
+                    <select th:field="*{nivelDeAcc}" required>
+                        <option value="ADMIN">Administrador</option>
+                        <option value="USER">Usuario</option>
+                    </select>
+                    <label>Activo:</label>
+                    <select th:field="*{strActivo}" required>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                    <label>Notas:</label>
+                    <textarea th:field="*{strNotas}"></textarea>
+                    <button type="submit">Actualizar</button>
+                    </form>
+            </div>
+         </div>   
+        </div>
+    </body>
+</html>

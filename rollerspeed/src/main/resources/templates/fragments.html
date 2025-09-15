@@ -19,6 +19,12 @@
                 });
             </script>
         </div>
+        <div th:fragment="header">
+            <div th:if="${#authentication != null and #authentication.isAuthenticated()}">
+                <p>Usuario: <span th:text="${#authentication.principal.username}"></span> | 
+                    Nivel: <span th:text="${#authentication.authorities}"></span></p>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col s12">
@@ -33,6 +39,10 @@
                         <li><a th:href="@{/registrar}">Registrar</a></li>
                         <li><a href="#!">two</a></li>                        
                        </ul>
+                       <ul id="ddMenu3" class="dropdown-content">
+                        <li><a th:href="@{/usuario/listar}">Usuarios</a></li>
+                        <li><a th:href="@{/usuario/perfil}">Perfil</a></li>                                                
+                       </ul> 
                     <nav id="navmenu" name="navmenu">
                         <div class="nav-wrapper">
                             <a href="index.html" class="brand-logo"><img th:src="@{logoRollerSpeed.png}" alt="logo" class="responsive-img navbar-logo"/> </a>                            
@@ -45,6 +55,8 @@
                               <li><a th:href="@{/estudiante/listar}">Estudiantes</a></li>
                               <li><a th:href="@{/estudiante_clase/listar}">Inscripciones</a></li>
                               <li><a th:href="@{/asistencia/listar}">Asistencias</a></li>
+                              <li><a class="dropdown-trigger" href="#!" data-target="ddMenu3">Usuarios</a></li>
+                              <li><a th:href="@{/logout}">Cerrar Sesión</a></li>
                             </ul>
                         </div>
                     </nav>

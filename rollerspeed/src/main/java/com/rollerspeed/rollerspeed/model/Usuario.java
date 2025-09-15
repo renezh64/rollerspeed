@@ -1,15 +1,14 @@
 package com.rollerspeed.rollerspeed.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constrains.NotBlank;
-
+import jakarta.validation.constraints.NotBlank;
 
 /**
  *
  * @author Rene Zapata
  */
 @Entity
-@Table(name= "tblUsarios")
+@Table(name= "tblUsuarios")
 public class Usuario 
 {
     @Id
@@ -26,7 +25,7 @@ public class Usuario
     
     @NotBlank(message="Por favor ingresar Nombre de usario")
     @Column(name="NomUsario", nullable = false, unique =true)
-    private String strApellidos;
+    private String nombUsuario;
     
     @NotBlank(message="Por favor la clave por favor")
     @Column(name="ClaveAcc", nullable=false )
@@ -47,7 +46,7 @@ public class Usuario
      * @return the Id
      */
     public Long getId()
-    { return Id; }
+    { return this.Id; }
 
     /**
      * @param Id the Id to set
@@ -59,7 +58,7 @@ public class Usuario
      * @return the strNombres
      */
     public String getStrNombres() 
-    { return strNombres; }
+    { return this.strNombres; }
 
     /**
      * @param strNombres the strNombres to set
@@ -71,7 +70,7 @@ public class Usuario
      * @return the strApellidos
      */
     public String getStrApellidos() 
-    { return strApellidos; }
+    { return this.strApellidos; }
 
     /**
      * @param strApellidos the strApellidos to set
@@ -82,20 +81,20 @@ public class Usuario
     /**
      * @return the strApellidos
      */
-    public String getStrApellidos() 
-    { return strApellidos; }
+    public String getstrNomUsuario() 
+    { return this.nombUsuario; }
 
     /**
-     * @param strApellidos the strApellidos to set
+     * @param strNomUsuario the strApellidos to set
      */
-    public void setStrApellidos(String strApellidos) 
-    { this.strApellidos = strApellidos; }
+    public void setstrNomUsuario(String strNomUsuario) 
+    { this.nombUsuario = strNomUsuario; }
 
     /**
      * @return the strClaveAcc
      */
     public String getStrClaveAcc() 
-    { return strClaveAcc;  }
+    { return this.strClaveAcc;  }
 
     /**
      * @param strClaveAcc the strClaveAcc to set
@@ -107,7 +106,7 @@ public class Usuario
      * @return the strNivelAcc
      */
     public String getStrNivelAcc() 
-    { return strNivelAcc; }
+    { return this.strNivelAcc; }
 
     /**
      * @param strNivelAcc the strNivelAcc to set
@@ -119,7 +118,7 @@ public class Usuario
      * @return the strActivo
      */
     public String getStrActivo() 
-    { return strActivo; }
+    { return this.strActivo; }
 
     /**
      * @param strActivo the strActivo to set
@@ -131,7 +130,7 @@ public class Usuario
      * @return the strNotas
      */
     public String getStrNotas()
-    { return strNotas; }
+    { return this.strNotas; }
 
     /**
      * @param strNotas the strNotas to set

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Escuela roller Speed, inicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    </head>
+    <body>
+        <div th:replace="~{fragments :: TheJs}"></div>
+        <div class="container">
+         <div class="row">
+          <div class="col s12">
+           <div th:replace="~{fragments :: navbar}"></div>   
+           <div th:replace="~{fragments :: navbar}"></div>
+          </div>
+         </div>
+         <div class="row">
+            <div class="col s12">
+                <h1>Iniciar Sesión</h1>
+                <form method="post" action="/login">
+                    <label>Nombre de Usuario:</label>
+                    <input type="text" name="username" required>
+                    <label>Contraseña:</label>
+                    <input type="password" name="password" required>
+                    <button type="submit" class="waves-effect waves-light btn">Iniciar Sesión</button>
+                </form>
+                <p th:if="${param.error}" style="color: red;">Usuario o contraseña incorrectos</p>
+                <p th:if="${param.logout}" style="color: green;">Sesión cerrada correctamente</p>
+            </div>
+         </div>            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Perfil de Usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div th:replace="~{fragments :: navbar}"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                   <h1>Perfil del Usuario</h1>
+                   <p><strong>Nombre:</strong> <span th:text="${usuario.nombres}"></span> <span th:text="${usuario.apellidos}"></span></p>
+                   <p><strong>Nombre de Usuario:</strong> <span th:text="${usuario.nomUsario}"></span></p>
+                   <p><strong>Nivel de Acceso:</strong> <span th:text="${usuario.nivelDeAcc}"></span></p>
+                   <p><strong>Activo:</strong> <span th:text="${usuario.activo}"></span></p>
+                   <p><strong>Notas:</strong> <span th:text="${usuario.notas}"></span></p>
+                   <a th:href="@{/logout}" class="waves-effect waves-light btn">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
