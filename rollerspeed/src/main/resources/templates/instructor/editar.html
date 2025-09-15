@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editar instructor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div th:replace="~{fragments :: navbar}"></div>
+                    <div th:replace="~{fragments :: TheJs}"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h1>Editar instructor</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <form th:action="@{/instructor/editar/{id}(id=${instructor.id})}" th:object="${instructor}" method="post">
+                    <label>Nombres:</label>
+                    <input type="text" th:field="*{nombres}" required>
+                    <label>Apellidos:</label>
+                    <input type="text" th:field="*{apellidos}" required>
+                    <label>Correo:</label>
+                    <input type="email" th:field="*{correo}" required>
+                    <label>Fecha Entrada:</label>
+                    <input type="date" th:field="*{fechaEntra}" required>
+                    <label>Fecha Salida:</label>
+                    <input type="date" th:field="*{fechaSal}">
+                    <button type="submit">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

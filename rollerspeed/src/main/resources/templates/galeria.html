@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Galería</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <!-- Iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .galeria img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <div th:replace="~{fragments :: navbar}"></div>
+
+        <!-- Scripts -->
+        <div th:replace="~{fragments :: TheJs}"></div>
+
+        <div class="row">
+            <div class="col s12">
+                <h1>Galería de Imágenes</h1>
+            </div>
+        </div>
+
+        <div class="row galeria">
+            <div class="col s12 m6 l4" th:each="imagen : ${imagenes}">
+                <img th:src="@{/images/{img}(img=${imagen})}" class="responsive-img z-depth-2 materialboxed" alt="Imagen">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
