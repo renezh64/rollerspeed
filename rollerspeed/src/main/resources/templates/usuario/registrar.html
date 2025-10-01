@@ -1,0 +1,114 @@
+<!-- templates/usuario/registrar.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Usuario</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        .input-field label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="fragments :: navbar"></div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Registrar Nuevo Usuario</span>
+
+            <form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
+                
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" th:field="*{strNombres}" id="strNombres" />
+                        <label for="strNombres">Nombres</label>
+                        <p th:if="${#fields.hasErrors('strNombres')}" th:errors="*{strNombres}" class="red-text"></p>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input type="text" th:field="*{strApellidos}" id="strApellidos" />
+                        <label for="strApellidos">Apellidos</label>
+                        <p th:if="${#fields.hasErrors('strApellidos')}" th:errors="*{strApellidos}" class="red-text"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text" th:field="*{strNomUsuario}" id="strNomUsuario" />
+                        <label for="strNomUsuario">Nombre de Usuario</label>
+                        <p th:if="${#fields.hasErrors('strNomUsuario')}" th:errors="*{strNomUsuario}" class="red-text"></p>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input type="password" th:field="*{strClaveAcc}" id="strClaveAcc" />
+                        <label for="strClaveAcc">Contraseña</label>
+                        <p th:if="${#fields.hasErrors('strClaveAcc')}" th:errors="*{strClaveAcc}" class="red-text"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select th:field="*{strNivelAcc}" id="strNivelAcc">
+                            <option value="" disabled selected>Seleccione Nivel de Acceso</option>
+                        <option value="ADMIN">Administrador</option>
+                        <option value="INSTRUCTOR">Instructor</option>
+                        <option value="ALUMNO">Alumno/Aspirante</option>
+                        <option value="PUBLI">Público general</option>
+                </select>
+                        </select>
+                        <label for="strNivelAcc">Nivel de Acceso</label>
+                        <p th:if="${#fields.hasErrors('strNivelAcc')}" th:errors="*{strNivelAcc}" class="red-text"></p>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <select th:field="*{strActivo}" id="strActivo">
+                            <option value="" disabled selected>Seleccione Estado</option>
+                            <option value="ACTIVO">ACTIVO</option>
+                            <option value="INACTIVO">INACTIVO</option>
+                        </select>
+                        <label for="strActivo">Estado</label>
+                        <p th:if="${#fields.hasErrors('strActivo')}" th:errors="*{strActivo}" class="red-text"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea class="materialize-textarea" th:field="*{strNotas}" id="strNotas"></textarea>
+                        <label for="strNotas">Notas</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <button type="submit" class="btn waves-effect waves-light">Registrar Usuario</button>
+                        <a th:href="@{/usuario/listar}" class="btn grey lighten-1">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<div th:replace="fragments :: TheJs"></div>
+
+<script>
+    // Inicializar los selects de Materialize para que no se monten las letras
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        M.FormSelect.init(elems);
+    });
+</script>
+
+</body>
+</html>

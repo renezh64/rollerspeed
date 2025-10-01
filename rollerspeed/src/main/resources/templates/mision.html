@@ -1,23 +1,55 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html th:replace="~{fragments :: navbar}">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        
-    </head>
-    <body>
-    <div class="container">
-     <h1>Misión de la Escuela</h1>
-     <p>Nuestra misión es proporcionar una educación de calidad, fomentando el desarrollo integral de los estudiantes...</p>
-     </div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Misión - Roller Speed</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="fragments :: navbar"></div>
+
+<div class="container">
+    <!-- Misión -->
+    <div class="row" id="Mision">
+        <div class="col s12">
+            <h1>Misión</h1>
+            <p>Formar y potenciar jóvenes talentos en el patinaje, brindando una educación integral que combina técnica, disciplina y valores deportivos,</p>
+            <p>fomentando la constancia, el trabajo en equipo y la resiliencia, impulsando su desarrollo personal, social y competitivo,</p>
+            <p>para que alcancen su máximo potencial y se conviertan en líderes dentro y fuera de la pista.</p>
+        </div>
+    </div>
+
+    <!-- Visión -->
+    <div class="row" id="Vision">
+        <div class="col s12">
+            <h1>Visión</h1>
+            <p>Ser reconocidos como la escuela de patinaje líder en formación de jóvenes promesas,</p>
+            <p>destacando por nuestra excelencia técnica, innovación en entrenamiento y compromiso con los valores deportivos,</p>
+            <p>impactando positivamente en la vida de nuestros estudiantes y en la comunidad deportiva nacional e internacional.</p> 
+        </div>
+    </div>
+
+    <!-- Valores -->
+    <div class="row" id="ValoresCorporativos">
+        <div class="col s12">
+            <h1>Valores Corporativos</h1>
+            <ul>
+                <li>Disciplina: Cumplir con constancia y compromiso en cada entrenamiento.</li>
+                <li>Respeto: Fomentar la empatía y consideración hacia compañeros, entrenadores y rivales.</li>
+                <li>Trabajo en equipo: Colaborar y apoyarse mutuamente para alcanzar metas comunes.</li>
+                <li>Resiliencia: Superar obstáculos y aprender de los desafíos.</li>
+                <li>Excelencia: Buscar siempre la mejora continua en técnica y desempeño.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<div th:replace="fragments :: TheJs"></div>
+
+</body>
 </html>

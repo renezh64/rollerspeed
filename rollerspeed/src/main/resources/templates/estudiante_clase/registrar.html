@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar Clase para Estudiante</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="~{fragments :: navbar}"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Registrar Clase para Estudiante</h4>
+                <form th:action="@{/estudiante_clase/registrar}" th:object="${estudianteClase}" method="post">
+                    
+                    <!-- Estudiante -->
+                    <div class="input-field">
+                        <select th:field="*{estudiante}" required>
+                            <option value="" disabled selected>Seleccione un estudiante</option>
+                            <option th:each="estudiante : ${estudiantes}" 
+                                    th:value="${estudiante.id}" 
+                                    th:text="${estudiante.nombres + ' ' + estudiante.apellidos}">
+                            </option>
+                        </select>
+                        <label>Estudiante</label>
+                    </div>
+
+                    <!-- Clase -->
+                    <div class="input-field">
+                        <select th:field="*{clase}" required>
+                            <option value="" disabled selected>Seleccione una clase</option>
+                            <option th:each="clase : ${clases}" 
+                                    th:value="${clase.id}" 
+                                    th:text="${clase.nombre}">
+                            </option>
+                        </select>
+                        <label>Clase</label>
+                    </div>
+
+                    <!-- Fecha de inscripción -->
+                    <div class="input-field">
+                        <input type="text" class="datepicker" th:field="*{fechaCre}" id="fechaCre" required>
+                        <label for="fechaCre">Fecha Inscripción</label>
+                    </div>
+
+                    <!-- Botón -->
+                    <button type="submit" class="waves-effect waves-light btn">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar selects
+            var selects = document.querySelectorAll('select');
+            M.FormSelect.init(selects);
+
+            // Inicializar datepickers
+            var datepickers = document.querySelectorAll('.datepicker');
+            M.Datepicker.init(datepickers, {
+                format: 'yyyy-mm-dd',
+                autoClose: true
+            });
+        });
+    </script>
+
+    <!-- Otros scripts -->
+    <div th:replace="~{fragments :: TheJs}"></div>
+
+</body>
+</html>

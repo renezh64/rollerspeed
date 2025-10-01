@@ -1,39 +1,72 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html th:replace="~{fragments :: navbar}">
-    <head >
-        <title>Editar aspirante</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col12">
-                    <h1>Editar Persona</h1>                    
-                </div>
+<html>
+<head>
+    <title>Editar Aspirante</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Scripts y JS de Materialize -->
+    <div th:replace="~{fragments :: TheJs}"></div>
+
+    <div class="container">
+        <!-- Navbar -->
+        <div class="row">
+            <div class="col s12">
+                <div th:replace="~{fragments :: navbar}"></div>
             </div>
-            <div class="row">
-                <div class="col s12">
-                    <form th:action="@{/editar/{id}(id=${aspirante.Id})}" th:object="${aspirante}" method="post">
-                    <label>Tipo de Identificacion:</label>
-                    <input type="text" th:field="*{strTipoID}" required>
-                    <label>Numeri Ident.:</label>
-                    <input type="text" th:field="*{strNumID}" required>
-                    <label>Nombres:</label>
-                    <input type="text" th:field="*{strNombres}" required>
-                    <label>Apellidos:</label>
-                    <input type="text" th:field="*{strApellidos}" required>
-                    <label>Medio de pago.:</label>
-                    <input type="text" th:field="*{strMedioPag}" required>
-                    <button type="submit">Actualizar</button>
-                    </form>
-                </div>
-            </div>
-            
         </div>
-    </body>
+
+        <!-- Título -->
+        <div class="row">
+            <div class="col s12">
+                <h4>Editar Aspirante</h4>                    
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <form th:action="@{/editar/{id}(id=${Aspirante.id})}" th:object="${Aspirante}" method="post">
+                    <div class="input-field">
+                        <input type="text" th:field="*{strTipoID}" id="tipoID" required>
+                        <label for="tipoID">Tipo de Identificación</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{strNumID}" id="numID" required>
+                        <label for="numID">Número de Identificación</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{strNombres}" id="nombres" required>
+                        <label for="nombres">Nombres</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{strApellidos}" id="apellidos" required>
+                        <label for="apellidos">Apellidos</label>
+                    </div>
+
+                    <div class="input-field">
+                        <select th:field="*{strMedioPag}" required>
+                            <option value="" disabled>Seleccione un método</option>
+                            <option value="Efectivo" th:selected="${Aspirante.strMedioPag == 'Efectivo'}">Efectivo</option>
+                            <option value="Tarjeta de Crédito" th:selected="${Aspirante.strMedioPag == 'Tarjeta de Crédito'}">Tarjeta de Crédito</option>
+                            <option value="PSE" th:selected="${Aspirante.strMedioPag == 'PSE'}">PSE</option>
+                            <option value="Cheque" th:selected="${Aspirante.strMedioPag == 'Cheque'}">Cheque</option>
+                        </select>
+                        <label>Medio de Pago</label>
+                    </div>
+
+                    <button type="submit" class="btn waves-effect waves-light">
+                        Actualizar <i class="material-icons right">update</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

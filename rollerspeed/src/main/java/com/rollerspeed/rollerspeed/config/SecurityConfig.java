@@ -38,7 +38,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/css/**", "/js/**", "/images/**", "/login", "/" // recursos públicos
+                    "/css/**", "/js/**", "/images/**", "/login", "/" , "/swagger-ui/**", "/v3/api-docs/**"// recursos públicos
                 ).permitAll()
                 .anyRequest().authenticated()  // cualquier otra ruta requiere login
             )

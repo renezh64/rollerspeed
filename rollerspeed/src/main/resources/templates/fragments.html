@@ -1,26 +1,112 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-        <div th:fragment="navbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col s12">
-                        <nav>
-                            <div class="nav-wrapper">
-                                <a href="#" class="brand-logo">ROLLER SPEED</a>
-                                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                  <li><a th:href="@{/}">Inicio</a></li>
-                                  <li><a th:href="@{/mision}">Misión</a></li>
-                                  <li><a th:href="@{/registrar}">Registrar</a></li>
-                                  <li><a th:href="@{/listar}">Listar</a></li>  
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+<div th:fragment="TheJs">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar todos los dropdowns
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            M.Dropdown.init(elems, {
+                coverTrigger: false,      // No cubre el trigger
+                constrainWidth: false,    // No restringe al ancho del trigger
+                closeOnClick: true,       // Cierra al hacer clic en un item
+                alignment: 'left',        // Alineación a la izquierda
+                hover: false,             // No se activa al pasar el mouse
+                stopPropagation: false
+            });
+
+            // Evitar que el click redirija
+            elems.forEach(function(el){
+                el.addEventListener('click', function(e){
+                    e.preventDefault();   // evita que vaya al href
+                });
+            });
+        });
+    </script>
+</div>
+
+<div th:fragment="navbar">
+
+    <!-- Dropdowns -->
+    <ul id="ddMenu1" class="dropdown-content">
+        <li><a th:href="@{/mision}">Misión, Visión y Valores</a></li>
+        <li><a th:href="@{/galeria}">Galería</a></li>
+    </ul>
+
+    <ul id="ddMenu2" class="dropdown-content">
+        <li><a th:href="@{/estudiante/listar}">Listar</a></li>
+        <li><a th:href="@{/estudiante/registrar}">Registrar</a></li>
+    </ul>
+
+    <ul id="ddMenu3" class="dropdown-content">
+        <li><a th:href="@{/usuario/listar}">Usuarios</a></li>
+        <li><a th:href="@{/usuario/perfil}">Perfil</a></li>
+    </ul>
+
+    <!-- Navbar principal -->
+    <nav>
+        <div class="nav-wrapper container">
+            <a th:href="@{/}" class="brand-logo">
+                <img th:src="@{/images/logoRollerSpeed.png}" alt="logo" class="navbar-logo"/>
+            </a>
+
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a th:href="@{/}">Inicio</a></li>
+
+                <!-- Dropdown Institucional -->
+                <li>
+                    <a class="dropdown-trigger" href="#!" data-target="ddMenu1">
+                        Institucional
+                    </a>
+                </li>
+
+                <!-- Dropdown Aspirantes -->
+                <li>
+                    <a class="dropdown-trigger" href="#!" data-target="ddMenu2">
+                        Aspirantes
+                    </a>
+                </li>
+
+                <li><a th:href="@{/instructor/listar}">Instructores</a></li>
+                <li><a th:href="@{/clase/listar}">Clases</a></li>
+                <li><a th:href="@{/estudiante/listar}">Estudiantes</a></li>
+                <li><a th:href="@{/estudiante_clase/listar}">Inscripciones</a></li>
+                <li><a th:href="@{/asistencia/listar}">Asistencias</a></li>
+
+                <!-- Dropdown Usuarios -->
+                <li>
+                    <a class="dropdown-trigger" href="#!" data-target="ddMenu3">
+                        Usuarios
+                    </a>
+                </li>
+
+                <li><a th:href="@{/logout}">Cerrar Sesión</a></li>
+            </ul>
         </div>
-    </body>
-</html>
+    </nav>
+
+    <!-- CSS adicional para dropdowns -->
+    <style>
+        /* Logo y texto */
+        .navbar-logo {
+            max-height: 100%;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        .brand-logo-text {
+            vertical-align: middle;
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        /* Asegurar que los dropdowns estén sobre todo */
+        .dropdown-content {
+            position: absolute !important;
+            z-index: 9999 !important;
+        }
+    </style>
+</div>
+
+

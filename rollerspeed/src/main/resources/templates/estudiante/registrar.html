@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registrar Aspirante</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/> 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>        
+    <title>Registrar Estudiante</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
-<body>        
+<body>
 
     <!-- Navbar -->
     <div th:replace="~{fragments :: navbar}"></div>
 
     <div class="container">
         <div class="row">
-            <div class="col s12 m8 offset-m2">
-                <h4>Registrar Aspirante</h4>
-                <form th:action="@{/aspirantes/registrar}" th:object="${aspirante}" method="post">
+            <div class="col s12">
+                <h4>Registrar Estudiante</h4>
+                <form th:action="@{/estudiante/registrar}" th:object="${estudiante}" method="post">
+
                     <div class="input-field">
                         <input type="text" th:field="*{tipoID}" id="tipoID" required>
                         <label for="tipoID">Tipo ID</label>
@@ -24,7 +25,7 @@
 
                     <div class="input-field">
                         <input type="text" th:field="*{numID}" id="numID" required>
-                        <label for="numID">Número de Identificación</label>
+                        <label for="numID">Número ID</label>
                     </div>
 
                     <div class="input-field">
@@ -38,28 +39,31 @@
                     </div>
 
                     <div class="input-field">
-                        <select th:field="*{medioPag}" required>
-                            <option value="" disabled>Seleccione un método</option>
-                            <option value="Efectivo">Efectivo</option>
-                            <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
-                            <option value="PSE">PSE</option>
-                            <option value="Cheque">Cheque</option>
-                        </select>
-                        <label>Medio de pago</label>
+                        <input type="date" th:field="*{fechaNac}" id="fechaNac" required>
+                        <label for="fechaNac" class="active">Fecha Nacimiento</label>
                     </div>
 
                     <button type="submit" class="waves-effect waves-light btn">Guardar</button>
+
                 </form>
             </div>
-        </div> 
+        </div>
     </div>
 
     <!-- Scripts de Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script th:inline="javascript">
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            M.FormSelect.init(elems);
+            // Inicializa selects
+            var elemsSelect = document.querySelectorAll('select');
+            M.FormSelect.init(elemsSelect);
+
+            // Inicializa cualquier sidenav o dropdown si los hubiera
+            var elemsDropdown = document.querySelectorAll('.dropdown-trigger');
+            M.Dropdown.init(elemsDropdown);
+
+            var elemsSidenav = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elemsSidenav);
         });
     </script>
 

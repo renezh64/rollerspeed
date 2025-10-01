@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Aspirantes</title>
+    <title>Lista de Estudiantes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
 <body>
@@ -15,9 +15,10 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <h4>Lista de Aspirantes</h4>
+                <h4>Lista de Estudiantes</h4>
+                <a th:href="@{/estudiante/registrar}" class="btn waves-effect waves-light">Nuevo Estudiante</a>
             </div>
-        </div>  
+        </div>
 
         <div class="row">
             <div class="col s12">
@@ -25,25 +26,27 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Tipo Ident</th>
-                            <th>Num. Identificación</th>
+                            <th>Tipo ID</th>
+                            <th>Número ID</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
+                            <th>Fecha Nacimiento</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="aspirante : ${Aspirantes}">
-                            <td th:text="${aspirante.id}"></td>
-                            <td th:text="${aspirante.tipoID}"></td>
-                            <td th:text="${aspirante.numID}"></td>
-                            <td th:text="${aspirante.nombres}"></td>
-                            <td th:text="${aspirante.apellidos}"></td> 
+                        <tr th:each="estudiante : ${estudiantes}">
+                            <td th:text="${estudiante.id}"></td>
+                            <td th:text="${estudiante.tipoID}"></td>
+                            <td th:text="${estudiante.numID}"></td>
+                            <td th:text="${estudiante.nombres}"></td>
+                            <td th:text="${estudiante.apellidos}"></td>
+                            <td th:text="${estudiante.fechaNac}"></td>
                             <td>
-                                <a th:href="@{/aspirantes/editar/{id}(id=${aspirante.id})}" class="btn waves-effect waves-light">
+                                <a th:href="@{/estudiante/editar/{id}(id=${estudiante.id})}" class="btn waves-effect waves-light">
                                     Editar <i class="material-icons right">edit</i>
                                 </a>
-                                <a th:href="@{/aspirantes/eliminar/{id}(id=${aspirante.id})}" class="btn red waves-effect waves-light">
+                                <a th:href="@{/estudiante/eliminar/{id}(id=${estudiante.id})}" class="btn red waves-effect waves-light">
                                     Eliminar <i class="material-icons right">delete</i>
                                 </a>
                             </td>
@@ -54,7 +57,7 @@
         </div>
     </div>
 
-    <!-- Scripts de Materialize y JS del fragment -->
+    <!-- Scripts de Materialize y fragment JS -->
     <div th:replace="~{fragments :: TheJs}"></div>
 
 </body>

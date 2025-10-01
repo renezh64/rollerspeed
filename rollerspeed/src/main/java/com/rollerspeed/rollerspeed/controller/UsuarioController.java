@@ -10,10 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-@Controller
+@RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
 

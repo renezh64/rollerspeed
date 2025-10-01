@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Clases</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="~{fragments :: navbar}"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Lista de Clases</h4>
+                <a th:href="@{/clase/registrar}" class="btn waves-effect waves-light">Nueva Clase</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <table class="responsive-table highlight">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Instructor</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Día</th>
+                            <th>Hora Inicio</th>
+                            <th>Hora Fin</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="clase : ${clases}">
+                            <td th:text="${clase.id}"></td>
+                            <td th:text="${clase.instructor.nombres + ' ' + clase.instructor.apellidos}"></td>
+                            <td th:text="${clase.nombre}"></td>
+                            <td th:text="${clase.descripcion}"></td>
+                            <td th:text="${clase.dia}"></td>
+                            <td th:text="${clase.horaIni}"></td>
+                            <td th:text="${clase.horaFin}"></td>
+                            <td th:text="${clase.fechaIni}"></td>
+                            <td th:text="${clase.fechaFin}"></td>
+                            <td>
+                                <a th:href="@{/clase/editar/{id}(id=${clase.id})}" class="btn waves-effect waves-light">
+                                    Editar <i class="material-icons right">edit</i>
+                                </a>
+                                <a th:href="@{/clase/eliminar/{id}(id=${clase.id})}" class="btn red waves-effect waves-light">
+                                    Eliminar <i class="material-icons right">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Materialize y fragment JS -->
+    <div th:replace="~{fragments :: TheJs}"></div>
+
+</body>
+</html>

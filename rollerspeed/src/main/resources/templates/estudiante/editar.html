@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Estudiante</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="~{fragments :: navbar}"></div>
+
+    <!-- Contenido de la página -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Editar Estudiante</h4>
+                <form th:action="@{/estudiante/editar/{id}(id=${estudiante.id})}" th:object="${estudiante}" method="post">
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{tipoID}" required id="tipoID"/>
+                        <label for="tipoID" class="active">Tipo ID</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{numID}" required id="numID"/>
+                        <label for="numID" class="active">Número ID</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{nombres}" required id="nombres"/>
+                        <label for="nombres" class="active">Nombres</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{apellidos}" required id="apellidos"/>
+                        <label for="apellidos" class="active">Apellidos</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="date" th:field="*{fechaNac}" required id="fechaNac"/>
+                        <label for="fechaNac" class="active">Fecha Nacimiento</label>
+                    </div>
+
+                    <button type="submit" class="waves-effect waves-light btn">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <div th:replace="~{fragments :: TheJs}"></div>
+
+</body>
+</html>

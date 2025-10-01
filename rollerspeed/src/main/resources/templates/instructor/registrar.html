@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar Instructor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="~{fragments :: navbar}"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Registrar Instructor</h4>
+                <form th:action="@{/instructor/registrar}" th:object="${instructor}" method="post">
+                    <div class="input-field">
+                        <input type="text" th:field="*{nombres}" id="nombres" required>
+                        <label for="nombres">Nombres</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" th:field="*{apellidos}" id="apellidos" required>
+                        <label for="apellidos">Apellidos</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="email" th:field="*{correo}" id="correo" required>
+                        <label for="correo">Correo</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="date" th:field="*{fechaEntra}" id="fechaEntra" required>
+                        <label for="fechaEntra" class="active">Fecha Entrada</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="date" th:field="*{fechaSal}" id="fechaSal">
+                        <label for="fechaSal" class="active">Fecha Salida</label>
+                    </div>
+
+                    <button type="submit" class="waves-effect waves-light btn">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <div th:replace="~{fragments :: TheJs}"></div>
+
+</body>
+</html>

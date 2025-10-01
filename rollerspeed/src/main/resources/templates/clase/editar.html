@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Clase</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h4>Editar Clase</h4>
+            <form th:action="@{/clase/editar/{id}(id=${clase.id})}" th:object="${clase}" method="post">
+
+                <!-- Selección de Instructor -->
+                <div class="input-field">
+                    <select th:field="*{instructor}" required>
+                        <option value="" disabled>Seleccione un instructor</option>
+                        <option th:each="instructor : ${instructores}" 
+                                th:value="${instructor.id}" 
+                                th:text="${instructor.nombres + ' ' + instructor.apellidos}"
+                                th:selected="${clase.instructor != null} ? ${clase.instructor.id} == ${instructor.id} : false">
+                        </option>
+                    </select>
+                    <label>Instructor</label>
+                </div>
+
+                <!-- Selección de Estudiante (Nombre) -->
+                <div class="input-field">
+                    <select th:field="*{nombre}" required>
+                        <option value="" disabled>Seleccione un estudiante</option>
+                        <option th:each="estudiante : ${estudiantes}" 
+                                th:value="${estudiante.nombres + ' ' + estudiante.apellidos}" 
+                                th:text="${estudiante.nombres + ' ' + estudiante.apellidos}"
+                                th:selected="${clase.nombre} == ${estudiante.nombres + ' ' + estudiante.apellidos}">
+                        </option>
+                    </select>
+                    <label>Nombre (Aspirante)</label>
+                </div>
+
+                <!-- Descripción -->
+                <div class="input-field">
+                    <textarea th:field="*{descripcion}" class="materialize-textarea" id="descripcion"></textarea>
+                    <label for="descripcion" class="active">Descripción</label>
+                </div>
+
+                <!-- Día -->
+                <div class="input-field">
+                    <input type="text" th:field="*{dia}" id="dia" required>
+                    <label for="dia" class="active">Día</label>
+                </div>
+
+                <!-- Hora Inicio -->
+                <div class="input-field">
+                    <input type="time" th:field="*{horaIni}" id="horaIni" required>
+                    <label for="horaIni" class="active">Hora Inicio</label>
+                </div>
+
+                <!-- Hora Fin -->
+                <div class="input-field">
+                    <input type="time" th:field="*{horaFin}" id="horaFin" required>
+                    <label for="horaFin" class="active">Hora Fin</label>
+                </div>
+
+                <!-- Fecha Inicio -->
+                <div class="input-field">
+                    <input type="date" th:field="*{fechaIni}" id="fechaIni" required>
+                    <label for="fechaIni" class="active">Fecha Inicio</label>
+                </div>
+
+                <!-- Fecha Fin -->
+                <div class="input-field">
+                    <input type="date" th:field="*{fechaFin}" id="fechaFin">
+                    <label for="fechaFin" class="active">Fecha Fin</label>
+                </div>
+
+                <button type="submit" class="waves-effect waves-light btn">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<div th:replace="~{fragments :: TheJs}"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var selects = document.querySelectorAll('select');
+        M.FormSelect.init(selects); // inicializa todos los selects de Materialize
+    });
+</script>
+
+</body>
+</html>

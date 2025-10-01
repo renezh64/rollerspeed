@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clases por estudiante</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div th:replace="~{fragments :: navbar}"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>Clases por estudiante</h4>
+                <a th:href="@{/estudiante_clase/registrar}" class="btn waves-effect waves-light">Nueva Inscripción</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <table class="responsive-table highlight">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Estudiante</th>
+                            <th>Clase</th>
+                            <th>Fecha Inscripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="estudianteClase : ${estudianteClases}">
+                            <td th:text="${estudianteClase.id}"></td>
+                            <td th:text="${estudianteClase.estudiante.nombres + ' ' + estudianteClase.estudiante.apellidos}"></td>
+                            <td th:text="${estudianteClase.clase.nombre}"></td>
+                            <td th:text="${estudianteClase.fechaCre}"></td>
+                            <td>
+                                <a th:href="@{/estudiante_clase/editar/{id}(id=${estudianteClase.id})}" 
+                                   class="btn waves-effect waves-light">
+                                   Editar <i class="material-icons right">edit</i>
+                                </a>
+                                <a th:href="@{/estudiante_clase/eliminar/{id}(id=${estudianteClase.id})}" 
+                                   class="btn red waves-effect waves-light">
+                                   Eliminar <i class="material-icons right">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Materialize y fragment JS -->
+    <div th:replace="~{fragments :: TheJs}"></div>
+
+</body>
+</html>
