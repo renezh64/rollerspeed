@@ -1,85 +1,66 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.rollerspeed.rollerspeed.controller;
 
 import com.rollerspeed.rollerspeed.model.clsAspirantes;
 import com.rollerspeed.rollerspeed.repository.clsAspitantesRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-/**
- *
- * @author Usuario
- */
 @Controller
-public class clsAspirantesController
-{
-   @Autowired
-   private clsAspitantesRepository AspiranteRepository;
-   
-   @GetMapping("/")
-   public String index()
-   {
-       return "index";
-   }
-   
-   // Página de misión
-    @GetMapping("/mision")
-    public String mision() {
-        return "mision";
+@RequestMapping("/aspirantes")
+public class clsAspirantesController {
+
+    @Autowired
+    private clsAspitantesRepository aspiranteRepository;
+
+    // Listar aspirantes
+    @GetMapping
+    public String listarAspirante(Model model) {
+        model.addAttribute("Aspirantes", aspiranteRepository.findAll());
+        return "listar"; // listar.html
     }
 
-    // Página de registro
+    // Mostrar formulario de registro
     @GetMapping("/registrar")
     public String mostrarFormularioRegistro(Model model) {
-        model.addAttribute("Aspirante", new clsAspirantes());
-        return "registrar";
+        model.addAttribute("aspirante", new clsAspirantes()); // <-- Cambiado a minúscula
+        return "registrar"; // registrar.html
     }
 
-    // Guardar persona
+    // Guardar aspirante
     @PostMapping("/registrar")
-    public String registrarAspirante(clsAspirantes aspirante) {
-        AspiranteRepository.save(aspirante);
-        return "redirect:/listar";
+    public String registrarAspirante(@ModelAttribute("aspirante") clsAspirantes aspirante) { // <-- minúscula
+        aspiranteRepository.save(aspirante);
+        return "redirect:/aspirantes";
     }
 
-    // Listar personas
-    @GetMapping("/listar")
-    public String listarAspirante(Model model) {
-        model.addAttribute("Aspirantes", AspiranteRepository.findAll());
-        return "listar";
-    }
-
-    // Mostrar formulario de edición
+    // Editar aspirante
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        clsAspirantes aspirante = AspiranteRepository.findById(id)
+        clsAspirantes aspirante = aspiranteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
-        model.addAttribute("Aspirante", aspirante);
-        return "editar";
+        model.addAttribute("aspirante", aspirante); // <-- Cambiado a minúscula
+        return "editar"; // editar.html
     }
 
-    // Actualizar persona
     @PostMapping("/editar/{id}")
     public String actualizarAspirante(@PathVariable Long id, clsAspirantes aspirante) {
         aspirante.setId(id);
-        AspiranteRepository.save(aspirante);
-        return "redirect:/listar";
+        aspiranteRepository.save(aspirante);
+        return "redirect:/aspirantes";
     }
 
-    // Eliminar persona
+    // Eliminar aspirante
     @GetMapping("/eliminar/{id}")
     public String eliminarAspirante(@PathVariable Long id) {
-        AspiranteRepository.deleteById(id);
-        return "redirect:/listar";
+        aspiranteRepository.deleteById(id);
+        return "redirect:/aspirantes";
     }
-   
-   
+
+    // Misión
+    @GetMapping("/mision")
+    public String mision() {
+        return "mision"; // mision.html
+    }
 }
