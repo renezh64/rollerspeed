@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/clase")
+@SessionAttributes({"usuario"})
 public class ClaseController {
 
     @Autowired

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
+import com.rollerspeed.rollerspeed.model.Usuario;
 
-@RestController
+@Controller
 @RequestMapping("/aspirantes")
+@SessionAttributes({"usuario"})
 public class clsAspirantesController {
 
     @Autowired

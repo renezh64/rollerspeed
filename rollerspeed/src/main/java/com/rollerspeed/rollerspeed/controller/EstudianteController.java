@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 /**
  *
  * @author Rene Zapata
  */
-@RestController
+@Controller
 @RequestMapping("/estudiante")
+@SessionAttributes({"usuario"})
 public class EstudianteController 
 {
     @Autowired

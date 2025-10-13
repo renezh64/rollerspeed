@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("/usuario")
+@SessionAttributes({"usuario"})  //para asegurar que los datos del usario queden en la session y puedan ser leido desde otros controladores
 public class UsuarioController {
 
     @Autowired
@@ -53,6 +54,7 @@ public class UsuarioController {
     // Listar usuarios
     @GetMapping("/listar")
     public String listar(Model model) {
+        if(model.getAttribute("usuario") != null)
         model.addAttribute("usuarios", usuarioRepository.findAll());
         return "usuario/listar";
     }

@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
         
 /**
  * Controlador de instructor
  * @author Rene Zapata
  */
-@RestController
+@Controller
+@SessionAttributes({"usuario"})
 @RequestMapping("/instructor")
 public class InstructorController 
 {

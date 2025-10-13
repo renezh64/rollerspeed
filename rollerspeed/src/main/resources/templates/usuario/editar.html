@@ -48,7 +48,9 @@
                             <select th:field="*{strNivelAcc}" required>
                                 <option value="" disabled>Seleccione nivel</option>
                                 <option value="ADMIN" th:selected="${usuario.strNivelAcc == 'ADMIN'}">Administrador</option>
-                                <option value="USER" th:selected="${usuario.strNivelAcc == 'USER'}">Usuario</option>
+                                <option value="INSTRUCTOR" th:selected="${usuario.strNivelAcc == 'INSTRUCTOR'}">Instructor</option>
+                                <option value="ESTU_ASP" th:selected="${usuario.strNivelAcc == 'ESTU_ASP'}">Estudiante/Aspirante</option>
+                                <option value="PUB" th:selected="${usuario.strNivelAcc == 'PUB'}">Publico</option>
                             </select>
                             <label class="active">Nivel de Acceso</label>
                         </div>

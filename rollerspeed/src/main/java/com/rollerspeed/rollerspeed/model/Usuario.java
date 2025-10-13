@@ -2,10 +2,12 @@ package com.rollerspeed.rollerspeed.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @Entity
 @Table(name= "tblUsuarios")
-public class Usuario {
+public class Usuario implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

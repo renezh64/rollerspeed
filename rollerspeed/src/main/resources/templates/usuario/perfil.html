@@ -19,24 +19,24 @@
                 <h4>Perfil del Usuario</h4>
 
                 <p><strong>Nombre:</strong> 
-                    <span th:text="${usuario != null} ? ${usuario.nombres} : 'No disponible'"></span>
-                    <span th:text="${usuario != null} ? ${usuario.apellidos} : ''"></span>
+                    <span th:text="${usuario != null} ? ${usuario.getStrNombres()} : 'No disponible'"></span>
+                    <span th:text="${usuario != null} ? ${usuario.getStrApellidos()} : ''"></span>
                 </p>
 
                 <p><strong>Nombre de Usuario:</strong> 
-                    <span th:text="${usuario != null} ? ${usuario.nomUsario} : 'No disponible'"></span>
+                    <span th:text="${usuario != null} ? ${usuario.getStrNomUsuario()} : 'No disponible'"></span>
                 </p>
 
                 <p><strong>Nivel de Acceso:</strong> 
-                    <span th:text="${usuario != null} ? ${usuario.nivelDeAcc} : 'No disponible'"></span>
+                    <span th:text="${usuario != null} ? ${usuario.getStrNivelAcc()} : 'No disponible'"></span>
                 </p>
 
                 <p><strong>Activo:</strong> 
-                    <span th:text="${usuario != null} ? ${usuario.activo} : 'No disponible'"></span>
+                    <span th:text="${usuario != null} ? ${usuario.getStrActivo()} : 'No disponible'"></span>
                 </p>
 
                 <p><strong>Notas:</strong> 
-                    <span th:text="${usuario != null} ? ${usuario.notas} : 'No disponible'"></span>
+                    <span th:text="${usuario != null} ? ${usuario.getStrNotas()} : 'No disponible'"></span>
                 </p>
 
                 <a th:href="@{/logout}" class="waves-effect waves-light btn">Cerrar Sesión</a>
