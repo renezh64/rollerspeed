@@ -75,6 +75,8 @@ public class SecurityConfig {
             .logout(logout -> logout
                 .logoutUrl("/logout")         // URL para cerrar sesión
                 .logoutSuccessUrl("/login?logout") // redirige al login con mensaje
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(org.springframework.security.config.http.SessionCreationPolicy.IF_REQUIRED)

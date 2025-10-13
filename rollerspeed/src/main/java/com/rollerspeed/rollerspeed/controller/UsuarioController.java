@@ -53,17 +53,25 @@ public class UsuarioController {
 
     // Listar usuarios
     @GetMapping("/listar")
-    public String listar(Model model) {
-        if(model.getAttribute("usuario") != null)
-        model.addAttribute("usuarios", usuarioRepository.findAll());
-        return "usuario/listar";
+    public String listar(Authentication authentication, Model model) {        
+        String username = authentication.getName();
+        Usuario myUsr = usuarioRepository.findByNombUsuario(username);
+        if(myUsr.getStrNivelAcc().compareTo("ADMIN")==0)
+        {
+            model.addAttribute("usuarios", usuarioRepository.findAll());
+            return "usuario/listar";    
+        }
+        else
+        {
+            return "usuario/perfil";
+        }    
     }
 
     // Perfil del usuario autenticado
     @GetMapping("/perfil")
     public String perfil(Authentication authentication, Model model) {
-        String username = authentication.getName();
-        Usuario usuario = usuarioRepository.findByNombUsuario(username);
+        String strUsrName = authentication.getName();
+        Usuario usuario = usuarioRepository.findByNombUsuario(strUsrName);
         model.addAttribute("usuario", usuario);
         return "usuario/perfil";
     }

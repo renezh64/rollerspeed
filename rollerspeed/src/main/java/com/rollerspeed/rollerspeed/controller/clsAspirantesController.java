@@ -8,20 +8,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import com.rollerspeed.rollerspeed.model.Usuario;
+import com.rollerspeed.rollerspeed.repository.UsuarioRepository;
+import org.springframework.security.core.Authentication;
 
 @Controller
 @RequestMapping("/aspirantes")
 @SessionAttributes({"usuario"})
 public class clsAspirantesController {
-
+    @Autowired
+    private UsuarioRepository usuarioRepository;
     @Autowired
     private clsAspitantesRepository aspiranteRepository;
 
     // Listar aspirantes
     @GetMapping
-    public String listarAspirante(Model model) {
-        model.addAttribute("Aspirantes", aspiranteRepository.findAll());
-        return "listar"; // listar.html
+    public String listarAspirante(Authentication authentication, Model model) 
+    {
+        String username = authentication.getName();
+        Usuario myUsr = usuarioRepository.findByNombUsuario(username);
+        if(myUsr.getStrNivelAcc().compareTo("ADMIN")==0)
+        {
+            model.addAttribute("Aspirantes", aspiranteRepository.findAll());
+            return "listar"; // listar.html
+        }
+        else
+        {
+           return "usuario/perfil"; // listar.html
+        }
     }
 
     // Mostrar formulario de registro

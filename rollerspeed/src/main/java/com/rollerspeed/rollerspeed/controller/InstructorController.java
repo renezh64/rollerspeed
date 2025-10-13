@@ -5,7 +5,9 @@
 package com.rollerspeed.rollerspeed.controller;
 
 import com.rollerspeed.rollerspeed.model.Instructor;
+import com.rollerspeed.rollerspeed.model.Usuario;
 import com.rollerspeed.rollerspeed.repository.InstructorRepository;
+import com.rollerspeed.rollerspeed.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import com.rollerspeed.rollerspeed.model.Usuario;
+import com.rollerspeed.rollerspeed.repository.UsuarioRepository;
+import org.springframework.security.core.Authentication;
         
 /**
  * Controlador de instructor
@@ -25,13 +30,27 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/instructor")
 public class InstructorController 
 {
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+    
      @Autowired
     private InstructorRepository instructorRepository;
 
     @GetMapping("/listar")
-    public String listar(Model model) {
-        model.addAttribute("instructores", instructorRepository.findAll());
-        return "instructor/listar";
+    public String listar(Authentication authentication, Model model) {
+        String username = authentication.getName();
+        Usuario myUsr = usuarioRepository.findByNombUsuario(username);
+        if(myUsr.getStrNivelAcc().compareTo("ADMIN")==0)
+        {
+             model.addAttribute("instructores", instructorRepository.findAll());
+            return "instructor/listar";
+        }
+        else
+        {
+           return "usuario/perfil"; // listar.html
+        }
+        
+       
     }
 
     @GetMapping("/registrar")
